@@ -53,7 +53,7 @@ class Door:
 	def __init__ (self, material):
 
 		self . conductivity = material . conductivity
-		self . thermal_mass = 400000 * material . heat_capacity / 2
+		self . thermal_mass = 400000 * material . heat_capacity
 
 
 
@@ -270,8 +270,7 @@ def kFromComponents (
 
 	k_main_tile_to_door = \
 		math.sqrt (main_tile . conductivity * door . conductivity) * 1000
-	k_door_to_door = door . conductivity * 1000
-	# It may actually be the case that k_door_to_door = 0.
+
 	k_door_to_local_tile = \
 		math.sqrt (door . conductivity * local_tile . conductivity) * 1000
 
@@ -329,12 +328,7 @@ def kFromComponents (
 			+ (1 / r_door_to_local_tile_to_local_coolant)
 		)
 	r_all_main_coolant_to_all_local_coolant = \
-		r_all_main_coolant_to_door \
-			+ (1 / k_door_to_door) \
-			+ r_door_to_all_local_coolant
-	# If k_door_to_door = 0,
-	# r_all_main_coolant_to_all_local_coolant = \
-	#	r_all_main_coolant_to_door + r_door_to_all_local_coolant
+		r_all_main_coolant_to_door + r_door_to_all_local_coolant
 
 	k_all_main_coolant_to_all_local_coolant = \
 		1 / r_all_main_coolant_to_all_local_coolant
