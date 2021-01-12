@@ -39,13 +39,21 @@ class Coolant:
 
 
 
-class Tile:
+class MineralTile:
 
 	def __init__ (self, material):
 
 		self . conductivity = material . conductivity
-		self . thermal_mass = 100000 *  material . heat_capacity
+		self . thermal_mass = 200000 * material . heat_capacity
 
+
+
+class ManufacturedTile:
+
+	def __init__ (self, material):
+
+		self . conductivity = material .conductivity
+		self . thermal_mass = 100000 * material . heat_capacity
 
 
 class Door:
@@ -195,20 +203,9 @@ materials = {
 	"Wolframite": Material (0.134, 15),
 }
 
-def pipeFromMaterialName (material_name):
-	if material_name in {
-		'Abyssalite',
-		'Ceramic',
-		'Granite',
-		'Igneous Rock',
-		'Obsidian',
-		'Sandstone',
-		'Sedimentary Rock'
-	}:
+def isMetal (material_name):
 
-		return Pipe (materials [material_name])
-
-	elif material_name in {
+	return material_name in {
 		'Aluminum',
 		'Cobalt',
 		'Copper',
@@ -219,9 +216,67 @@ def pipeFromMaterialName (material_name):
 		'Steel',
 		'Thermium',
 		'Tungsten'
-	}:
+	}
+
+
+def isRawMineral (material_name):
+
+	return material_name in {
+		'Abyssalite',
+		'Ceramic',
+		'Granite',
+		'Igneous Rock',
+		'Isoresin',
+		'Obsidian',
+		'Sandstone',
+		'Sedimentary Rock'
+	}
+
+
+def isTransparent (material_name):
+
+	return material_name in {
+		'Glass',
+		'Diamond'
+	}
+
+
+def isInsulator (material_name):
+
+	return material_name in {
+		'Ceramic',
+		'Insulation'
+	}
+
+
+def pipeFromMaterialName (material_name):
+
+	if isRawMineral (material_name) \
+		or isInsulator (material_name) \
+		or material_name == 'Wolframite':
+
+		return Pipe (materials [material_name])
+
+	elif isMetal (material_name):
 
 		return RadiantPipe (materials [material_name])
+
+	else:
+
+		return None
+
+
+def tileFromMaterialName (material_name):
+
+	if isRawMineral (material_name) or isInsulator (material_name):
+
+		return MineralTile (materials [material_name])
+
+	elif isMetal (material_name) \
+		or isTransparent (material_name) \
+		or material_name == 'Plastic':
+
+		return ManufacturedTile (materials [material_name])
 
 	else:
 
@@ -426,17 +481,17 @@ def calculate (args):
 			args . pipe_material
 	)
 
-	main_tile_material = materials [
+	main_tile_material_name = (
 		args . main_tile_material if
 			args . main_tile_material != None else
 			args . tile_material
-	]
+	)
 
-	local_tile_material = materials [
+	local_tile_material_name = (
 		args . local_tile_material if
 			args . local_tile_material != None else
 			args . tile_material
-	]
+	)
 
 	door_material = materials [args . door_material]
 
@@ -451,8 +506,8 @@ def calculate (args):
 	main_pipe = pipeFromMaterialName (main_pipe_material_name)
 	local_pipe = pipeFromMaterialName (local_pipe_material_name)
 
-	main_tile = Tile (main_tile_material)
-	local_tile = Tile (local_tile_material)
+	main_tile = tileFromMaterialName (main_tile_material_name)
+	local_tile = tileFromMaterialName (local_tile_material_name)
 
 	door = Door (door_material)
 
