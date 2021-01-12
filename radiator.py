@@ -636,11 +636,11 @@ calculate_parser . add_argument (
 calculate_parser . add_argument (
 	'--pipe_material',
 	'-p',
-	default = 'Granite',
+	default = 'Copper',
 	type = str,
 	required = False,
 	help = "The material used for the pipes in the radiator.  Both lines are "
-		"assumed to use the same material. Granite is the default.",
+		"assumed to use the same material. Copper is the default.",
 	metavar = 'MATERIAL_NAME'
 )
 
