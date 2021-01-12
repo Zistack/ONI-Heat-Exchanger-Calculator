@@ -26,7 +26,7 @@ class RadiantPipe:
 	def __init__ (self, material):
 
 		self . conductivity = material . conductivity * 2
-		self . thermal_mass = 400000 * material . heat_capacity / 5
+		self . thermal_mass = 50000 * material . heat_capacity / 5
 
 
 
