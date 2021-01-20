@@ -3,6 +3,7 @@
 import math
 from enum import Enum
 from argparse import ArgumentParser
+import sys
 
 class Material:
 
@@ -617,14 +618,10 @@ def calculate (args):
 
 
 parser = ArgumentParser (
-	description = "radiator.py is a simple script designed to assist in "
+	description = sys . argv [0] + " is a simple script designed to assist in "
 		"designing passive heat exchangers in Oxygen Not Included. Assumes a "
-		"radiator made from two layers of tiles separated by mechanized "
-		"airlocks. The coolant lines are each run through the layer of tile "
-		"and the closer of the two layers of door tiles. The \"main\" coolant "
-		"line is attached to a heat/cold sink. The \"local\" coolant line is "
-		"the coolant loop that directly interacts with the machines or space "
-		"to be heated or cooled."
+		"heat exchanger made from layers of tiles separated by mechanized "
+		"airlocks."
 )
 
 subparsers = parser . add_subparsers (required = True, dest = 'command')
