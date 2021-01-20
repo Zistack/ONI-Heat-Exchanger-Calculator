@@ -371,7 +371,7 @@ class HeatExchanger:
 
 	def k (self):
 
-		return 1 / self . hot_side . r (self . mechanized_airlock, True) + 1 / self . cold_side . r (self . mechanized_airlock, False)
+		return 1 / (self . hot_side . r (self . mechanized_airlock, True) + self . cold_side . r (self . mechanized_airlock, False))
 
 
 	def lStationaryAgainstStationary (self, dtu, delta_t_0):
