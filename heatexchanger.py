@@ -259,7 +259,7 @@ class CellHalf:
 
 	def r (self, mechanized_airlock, is_hot_side):
 
-		m = 25 if 'Gas' in self . coolant . proprties else 1
+		m = 25 if 'Gas' in self . coolant . properties else 1
 
 		r_at = 1 / (1000 * math . sqrt (mechanized_airlock . conductivity * self . tile . conductivity))
 		r_tc = 1 / (1000 * m * self . cell_contact_ratio * math . sqrt (self . tile . conductivity * self . coolant . conductivity))
