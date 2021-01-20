@@ -381,7 +381,7 @@ class HeatExchanger:
 
 	def lFlowAgainstStationary (self, dtu, delta_t_0, thermal_flow_rate):
 
-		return (flow_rate / self . k ()) * math . log (1 + dtu / (delta_t_0 * thermal_flow_rate))
+		return (thermal_flow_rate / self . k ()) * math . log (1 + dtu / (delta_t_0 * thermal_flow_rate))
 
 
 	def lFlowAgainstFlow (self, dtu, delta_t_0, hot_thermal_flow_rate, cold_thermal_flow_rate):
