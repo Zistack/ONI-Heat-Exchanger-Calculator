@@ -57,6 +57,7 @@ materials = {
 	'Lime': Material (0.834, 2, {'Consumable Ore', 'Solid'}),
 	'Mafic Rock': Material (0.2, 1, {'Generic Buildable', 'Raw Mineral', 'Solid'}),
 	'Mud': Material (0.83, 2, {'Organic', 'Solid', 'Unstable'}),
+	'Niobium': Material (0.265, 54, {'Generic Buildable', 'Rare Resource', 'Raw Metal', 'Refined Metal', 'Solid'}),
 	'Obsidian': Material (0.2, 2, {'Crushable', 'Generic Buildable', 'Plumbable', 'Raw Mineral', 'Solid'}),
 	'Oxylite': Material (1, 4, {'Consumable Ore', 'Solid'}),
 	'Phosphate Nodules': Material (0.15, 2, {'Agriculture', 'Solid'}),
@@ -76,9 +77,10 @@ materials = {
 	'Sedimentary Rock': Material (0.2, 2, {'Crushable', 'Generic Buildable', 'Plumbable', 'Raw Mineral', 'Solid'}),
 	'Slime': Material (0.2, 2, {'Organic', 'Solid'}),
 	'Snow': Material (2.05, 0.545, {'Ice', 'Liquifiable', 'Solid', 'Unstable'}),
-	'Steel': Material (0.49, 54, {'Generic Buildable', 'Manufactured Material', 'Refined Metal', 'Solid'}),
+	'Steel': Material (0.49, 54, {'Generic Buildable', 'Manufactured Material', 'Raw Metal', 'Refined Metal', 'Solid'}),
 	'Sucrose': Material (0.43, 0.444, {'Consumable Ore', 'Solid'}),
 	'Sulfur': Material (0.7, 0.2, {'Solid'}),
+	'Thermium': Material (0.622, 220, {'Generic Buildable', 'Manufactured Material', 'Plumbable', 'Raw Metal', 'Refined Metal', 'Solid'}),
 	'Tungsten': Material (0.134, 60, {'Generic Buildable', 'Plumbable', 'Refined Metal', 'Solid'}),
 	'Wolframite': Material (0.134, 15, {'Generic Buildable', 'Plumbable', 'Raw Metal', 'Solid'}),
 
@@ -97,6 +99,7 @@ materials = {
 	'Molten Glass': Material (0.2, 1, {'Light Emitter', 'Liquid'}),
 	'Molten Gold': Material (0.1291, 6, {'Flammable', 'Light Emitter', 'Liquid', 'Raw Metal', 'Refined Metal'}),
 	'Molten Iron': Material (0.449, 4, {'Flammable', 'Light Emitter', 'Liquid', 'Raw Metal', 'Refined Metal'}),
+	'Molten Niobium': Material (0.265, 54, {'Flammable', 'Light Emitter', 'Liquid', 'Raw Metal', 'Refined Metal'}),
 	'Molten Phosphorus': Material (0.7697, 0.236, {'Light Emitter', 'Liquid'}),
 	'Molten Salt': Material (0.7, 0.444, {'Liquid'}),
 	'Molten Steel': Material (0.386, 80, {'Flammable', 'Light Emitter', 'Liquid', 'Raw Metal', 'Refined Metal'}),
@@ -120,6 +123,7 @@ materials = {
 	'Hydrogen': Material (2.4, 0.168, {'Flammable', 'Gas', 'Unbreathable'}),
 	'Iron Gas': Material (0.449, 1, {'Flammable', 'Gas', 'Light Emitter', 'Raw Metal', 'Refined Metal', 'Unbreathable'}),
 	'Natural Gas': Material (2.191, 0.035, {'Flammable', 'Gas', 'Unbreathable'}),
+	'Niobium Gas': Material (0.265, 1, {'Flammable', 'Gas', 'Light Emitter', 'Raw Metal', 'Refined Metal', 'Unbreathable'}),
 	'Oxygen': Material (1.005, 0.024, {'Breathable Gas', 'Gas'}),
 	'Polluted Oxygen': Material (1.01, 0.024, {'Breathable Gas', 'Gas', 'Toxic'}),
 	'Phosphorus Gas': Material (0.7697, 0.236, {'Flammable', 'Gas', 'Light Emitter', 'Unbreathable'}),
@@ -483,7 +487,7 @@ def calculate (args):
 		if args . hot_coolant_temperature:
 			raise ValueError ("You must specify an entry or exit temperature for flowing coolants.")
 
-		if 'Solid' in material . properties:
+		if 'Solid' in coolant . properties:
 			raise ValueError ("Waterfalls cannot be made out of solids.")
 
 		hot_side = CellHalf (tile, coolant, num_tiles, contact_ratio, flow_rate)
@@ -564,7 +568,7 @@ def calculate (args):
 		if args . cold_coolant_temperature:
 			raise ValueError ("You must specify an entry or exit temperature for flowing coolants.")
 
-		if 'Solid' in material . properties:
+		if 'Solid' in coolant . properties:
 			raise ValueError ("Waterfalls cannot be made out of solids.")
 
 		cold_side = CellHalf (tile, coolant, num_tiles, contact_ratio, flow_rate)
