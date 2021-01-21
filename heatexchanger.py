@@ -456,7 +456,7 @@ def calculate (args):
 
 	if hot_interface == 'stationary':
 
-		coolant = materials [args . hot_coolant if args . hot_coolant else args . coolant]
+		coolant = getMaterial (args . cold_coolant if args . cold_coolant else args . coolant)
 		contact_ratio = args . hot_coolant_contact_ratio if args . hot_coolant_contact_ratio else args . coolant_contact_ratio
 		tile = Tile (args . hot_tile_material if args . hot_tile_material else args . tile_material)
 		num_tiles = args . num_hot_tiles if args . num_hot_tiles else args . num_tiles
@@ -475,7 +475,7 @@ def calculate (args):
 
 	elif hot_interface == 'waterfall':
 
-		coolant = materials [args . hot_coolant if args . hot_coolant else args . coolant]
+		coolant = getMaterial (args . cold_coolant if args . cold_coolant else args . coolant)
 		flow_rate = (args . hot_coolant_flow_rate if args . hot_coolant_flow_rate else args . coolant_flow_rate) * 1000
 		contact_ratio = args . hot_coolant_contact_ratio if args . hot_coolant_contact_ratio else args . coolant_contact_ratio
 		tile = Tile (args . hot_tile_material if args . hot_tile_material else args . tile_material)
@@ -498,7 +498,7 @@ def calculate (args):
 
 	elif hot_interface == 'conduits':
 
-		coolant = materials [args . hot_coolant if args . hot_coolant else args . coolant]
+		coolant = getMaterial (args . cold_coolant if args . cold_coolant else args . coolant)
 		flow_rate = (args . hot_coolant_flow_rate if args . hot_coolant_flow_rate else args . coolant_flow_rate) * 1000
 		tile = Tile (args . hot_tile_material if args . hot_tile_material else args . tile_material)
 		num_tiles = args . num_hot_tiles if args . num_hot_tiles else args . num_tiles
@@ -537,7 +537,7 @@ def calculate (args):
 
 	if cold_interface == 'stationary':
 
-		coolant = materials [args . cold_coolant if args . cold_coolant else args . coolant]
+		coolant = getMaterial (args . cold_coolant if args . cold_coolant else args . coolant)
 		contact_ratio = args . cold_coolant_contact_ratio if args . cold_coolant_contact_ratio else args . coolant_contact_ratio
 		tile = Tile (args . cold_tile_material if args . cold_tile_material else args . tile_material)
 		num_tiles = args . num_cold_tiles if args . num_cold_tiles else args . num_tiles
@@ -556,7 +556,7 @@ def calculate (args):
 
 	elif cold_interface == 'waterfall':
 
-		coolant = materials [args . cold_coolant if args . cold_coolant else args . coolant]
+		coolant = getMaterial (args . cold_coolant if args . cold_coolant else args . coolant)
 		flow_rate = (args . cold_coolant_flow_rate if args . cold_coolant_flow_rate else args . coolant_flow_rate) * 1000
 		contact_ratio = args . cold_coolant_contact_ratio if args . cold_coolant_contact_ratio else args . coolant_contact_ratio
 		tile = Tile (args . cold_tile_material if args . cold_tile_material else args . tile_material)
@@ -579,7 +579,7 @@ def calculate (args):
 
 	elif cold_interface == 'conduits':
 
-		coolant = materials [args . cold_coolant if args . cold_coolant else args . coolant]
+		coolant = getMaterial (args . cold_coolant if args . cold_coolant else args . coolant)
 		flow_rate = (args . cold_coolant_flow_rate if args . cold_coolant_flow_rate else args . coolant_flow_rate) * 1000
 		tile = Tile (args . cold_tile_material if args . cold_tile_material else args . tile_material)
 		num_tiles = args . num_cold_tiles if args . num_cold_tiles else args . num_tiles
