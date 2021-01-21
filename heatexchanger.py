@@ -20,6 +20,8 @@ materials = {
 # Solids
 
 	'Algea': Material (0.2, 2, {'Organic', 'Solid'}),
+	'Aluminum': Material (0.91, 205, {'Flammable', 'Generic Buildable', 'Refined Metal', 'Solid'}),
+	'Aluminum Ore': Material (0.91, 20.5, {'Generic Buildable', 'Ore', 'Raw Metal', 'Solid'}),
 	'Bleach Stone': Material (0.5, 4, {'Consumable Ore', 'Solid'}),
 	'Ceramic': Material (0.84, 0.62, {'Crushable', 'Generic Buildable', 'Plumbable', 'Raw Mineral', 'Solid'}),
 	'Clay': Material (0.92, 2, {'Cultivable Soil', 'Generic Buildable', 'Solid'}),
@@ -94,6 +96,7 @@ materials = {
 	'Liquid Methane': Material (2.191, 0.03, {'Flammable', 'Liquid'}),
 	'Liquid Oxygen': Material (1.01, 2, {'Liquid'}),
 	'Magma': Material (1, 1, {'Light Emitter', 'Liquid'}),
+	'Molten Aluminum': Material (0.91, 20.5, {'Flammable', 'Light Emitter', 'Liquid', 'Raw Metal', 'Refined Metal'}),
 	'Molten Carbon': Material (0.71, 2, {'Flammable', 'Liquid'}),
 	'Molten Copper': Material (0.386, 12, {'Flammable', 'Light Emitter', 'Liquid', 'Raw Metal', 'Refined Metal'}),
 	'Molten Glass': Material (0.2, 1, {'Light Emitter', 'Liquid'}),
@@ -114,11 +117,12 @@ materials = {
 
 # Gasses
 
+	'Aluminum Gas': Material (0.91, 2.5, {'Flammable', 'Gas', 'Light Emitter', 'Raw Metal', 'Refined Metal', 'Unbreathable'}),
 	'Carbon Dioxide': Material (0.846, 0.0146, {'Gas', 'Unbreathable'}),
 	'Carbon Gas': Material (0.71, 1.7, {'Flammable', 'Light Emitter', 'Gas', 'Unbreathable'}),
 	'Chlorine': Material (0.48, 0.0081, {'Flammable', 'Gas', 'Toxic', 'Unbreathable'}),
 	'Copper Gas': Material (0.386, 1, {'Flammable', 'Gas', 'Light Emitter', 'Raw Metal', 'Refined Metal', 'Unbreathable'}),
-	'Ethanol Gas': Material (2.148, 0.167, {'Flammable', 'Gas', 'Toxic', 'Unbreathable Gas'}),
+	'Ethanol Gas': Material (2.148, 0.167, {'Flammable', 'Gas', 'Toxic', 'Unbreathable'}),
 	'Gold Gas': Material (0.1291, 1, {'Flammable', 'Gas', 'Light Emitter', 'Raw Metal', 'Refined Metal', 'Unbreathable'}),
 	'Hydrogen': Material (2.4, 0.168, {'Flammable', 'Gas', 'Unbreathable'}),
 	'Iron Gas': Material (0.449, 1, {'Flammable', 'Gas', 'Light Emitter', 'Raw Metal', 'Refined Metal', 'Unbreathable'}),
@@ -132,7 +136,7 @@ materials = {
 	'Sour Gas': Material (0.242, 0.018, {'Flammable', 'Gas', 'Unbreathable'}),
 	'Steam': Material (4.179, 0.184, {'Gas', 'Unbreathable'}),
 	'Steel Gas': Material (0.49, 1, {'Alloy', 'Flammable', 'Gas', 'Light Emitter', 'Raw Metal', 'Refined Metal', 'Unbreathable'}),
-	'Super Coolant Gas': Material (8.44, 1.2, {'Gas', 'Unbreathable Gas'}),
+	'Super Coolant Gas': Material (8.44, 1.2, {'Gas', 'Unbreathable'}),
 	'Sulfur Gas': Material (0.7, 0.2, {'Flammable', 'Gas', 'Unbreathable'}),
 	'Tungsten Gas': Material (0.134, 1, {'Gas', 'Raw Metal', 'Refined Metal', 'Unbreathable'}),
 }
