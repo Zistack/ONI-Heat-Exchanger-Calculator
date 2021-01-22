@@ -502,7 +502,7 @@ def calculate (args):
 
 	elif hot_interface == 'conduits':
 
-		coolant = getMaterial (args . cold_coolant if args . cold_coolant else args . coolant)
+		coolant = getMaterial (args . hot_coolant if args . hot_coolant else args . coolant)
 		flow_rate = (args . hot_coolant_flow_rate if args . hot_coolant_flow_rate else args . coolant_flow_rate) * 1000
 		tile = Tile (args . hot_tile_material if args . hot_tile_material else args . tile_material)
 		num_tiles = args . num_hot_tiles if args . num_hot_tiles else args . num_tiles
