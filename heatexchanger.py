@@ -332,7 +332,7 @@ class RailHalf:
 		self . flow_rate = flow_rate
 
 
-	def rRails (self, mechanized_airlock, is_hot_side):
+	def r (self, mechanized_airlock, is_hot_side):
 
 		r_at = 1 / (1000 * math . sqrt (mechanized_airlock . conductivity * self . tile . conductivity))
 		r_tc = 1 / (1000 * min (self . tile . conductivity, self . coolant . conductivity))
