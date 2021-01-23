@@ -323,10 +323,9 @@ class PipeHalf:
 
 class RailHalf:
 
-	def __init__ (self, tile, rail, coolant, n, flow_rate):
+	def __init__ (self, tile, coolant, n, flow_rate):
 
 		self . tile = tile
-		self . rail = rail
 		self . coolant = coolant
 		self . n = n
 		self . flow_rate = flow_rate
@@ -336,36 +335,21 @@ class RailHalf:
 
 		r_at = 1 / (1000 * math . sqrt (mechanized_airlock . conductivity * self . tile . conductivity))
 		r_tc = 1 / (1000 * min (self . tile . conductivity, self . coolant . conductivity))
-		r_rc = 1 / (25 * (self . rail . conductivity + self . coolant . conductivity))
 		r_ac = 1 / (1000 * min (mechanized_airlock . conductivity, self . coolant . conductivity))
 		r_tt = 1 / (1000 * self . tile . conductivity)
-
-		if is_hot_side:
-
-			r_ar = 2 / (mechanized_airlock . conductivity * self . rail . conductivity * self . rail . thermal_mass)
-			r_tr = 2 / (self . tile . conductivity * self . rail . conductivity * self . rail . thermal_mass)
-
-		else:
-
-			r_ar = 2 / (mechanized_airlock . conductivity * self . rail . conductivity * mechanized_airlock . thermal_mass)
-			r_tr = 2 / (self . tile . conductivity * self . rail . conductivity * self . tile . thermal_mass)
-
-
-		r_ac_total = 1 / (1 / (r_ar + r_rc) + 1 / r_ac)
-		r_tc_total = 1 / (1 / (r_tr + r_tc) + 1 / r_tc)
 
 		def rTiles (n):
 
 			if n == 1:
 
-				return r_tc_total
+				return r_tc
 
 			else:
 
-				return 1 / (1 / r_tc_total + 1 / (r_tt + rTiles (n - 1)))
+				return 1 / (1 / r_tc + 1 / (r_tt + rTiles (n - 1)))
 
 
-		return 1 / (1 / (r_ac_total) + 1 / (r_at + rTiles (self . n)))
+		return 1 / (1 / (r_ac) + 1 / (r_at + rTiles (self . n)))
 
 
 
@@ -517,9 +501,10 @@ def calculate (args):
 
 		if 'Solid' in coolant . properties:
 
-			conduit = SolidConduit (conduit_material)
+			if args . hot_conduit_material:
+				raise ValueError ("The material used to construct the conveyor rails is irrelevant.")
 
-			hot_side = RailHalf (tile, conduit, coolant, num_tiles, flow_rate)
+			hot_side = RailHalf (tile, coolant, num_tiles, flow_rate)
 
 		elif 'Liquid' in coolant . properties:
 
@@ -598,9 +583,10 @@ def calculate (args):
 
 		if 'Solid' in coolant . properties:
 
-			conduit = SolidConduit (conduit_material)
+			if args . cold_conduit_material:
+				raise ValueError ("The material used to construct the conveyor rails is irrelevant.")
 
-			cold_side = RailHalf (tile, conduit, coolant, num_tiles, flow_rate)
+			cold_side = RailHalf (tile, coolant, num_tiles, flow_rate)
 
 		elif 'Liquid' in coolant . properties:
 

@@ -67,7 +67,7 @@ The script assists in finding this quantity.
 
 The script makes a distinction between a hot side and a cold side.
 Heat is assumed to move from the hot side to the cold side.
-Each side can have different paramters and a different interface.
+Each side can have different parameters and a different interface.
 
 The different interfaces available are \emph{stationary}, \emph{waterfall}, and \emph{conduits}.
 
@@ -76,12 +76,12 @@ The different interfaces available are \emph{stationary}, \emph{waterfall}, and 
 
 \item The \emph{waterfall} interface is used when the heat exchanger is being used to cool cells of flowing fluid (liquid or gas).
 The flowing cells are directly adjacent to the outermost tiles on the heat exchanger.
-The ratio of heat exchanger tiles contacting coolant cells over heat exchanger tiles not contacting coolant cells can be specified to accomodate the use of bead flows.
+The ratio of heat exchanger tiles contacting coolant cells over heat exchanger tiles not contacting coolant cells can be specified to accommodate the use of bead flows.
 
 \item The \emph{conduits} interface is used when the coolant is being piped through a conduit of some sort (a liquid/gas pipe, or a conveyor rail).
 \end{itemize}
 
-When speficying the temperature constraints of flowing coolants, either the entry or exit temperatures may be specified.
+When specifying the temperature constraints of flowing coolants, either the entry or exit temperatures may be specified.
 The script will also auto-detect which tiles/pipes you mean to build by inspecting the materials used as coolant and the materials used to construct them.
 
 \section{Example Usage}
@@ -94,7 +94,7 @@ The worst-case steam vent outputs \(3 \frac{\mathrm{kg}}{\mathrm{s}}\) water 50 
 
 We'll assume that the other side of the heat exchanger is hooked up to an aquatuner on a loop that also cools some other machines.
 If this aquatuner is set to cool the polluted water down to -19 \degree{}C, then the worst-case temperature on the output side of this heat exchanger should be 9 \degree{}C.
-This worst-case assumes that the cool steam vent is the last thing on the coolant loop, the aquatiner powering the loop is fully loaded when all machines are accounted for, and the coolant packets have a nasty habit of just barely not heating up enough to pass through the aquatuner safely.
+This worst-case assumes that the cool steam vent is the last thing on the coolant loop, the aquatuner powering the loop is fully loaded when all machines are accounted for, and the coolant packets have a nasty habit of just barely not heating up enough to pass through the aquatuner safely.
 
 We'll assume early game materials for the heat exchanger, so copper ore for the mechanized airlocks, copper for the pipes, and granite for the tiles.
 
@@ -117,7 +117,7 @@ Let's set the coolant temperature going into the metal refinery at 60 \degree{}C
 On the other side, we just have some cold mass made out of tiles.
 Let's assume that we've wise built this thing under some ice/polluted ice at something like -40 \degree{}C.
 
-We'll start with early game materials for the heat exchanger, so copper ore for the mechanized airlockis, copper for the pipes, granite for the tiles.
+We'll start with early game materials for the heat exchanger, so copper ore for the mechanized airlocks, copper for the pipes, granite for the tiles.
 
 \begin{minted}[breaklines]{bash}
 ./heatexchanger.py calculate -H 2339.162 --hot-interface conduits --hot-coolant-exit-temperature 60 --cold-interface stationary --cold-coolant 'Polluted Ice' --cold-coolant-temperature -40
@@ -136,7 +136,7 @@ $ ./heatexchanger.py calculate -H 2339.162 --hot-interface conduits --hot-coolan
 \section{Formulas}
 
 The formulas used in the heat exchanger script are derived from approximate models of the heat transfer behavior in the game.
-The formulas for the heat flow across the length of the radiator are conservative estimates, meaning that they'll under-estimate the heat flow given the parameters, or alternately over-estimate the reqwuired length.
+The formulas for the heat flow across the length of the radiator are conservative estimates, meaning that they'll under-estimate the heat flow given the parameters, or alternately over-estimate the required length.
 The formulas for the thermal conductivity are merely approximate.
 As such, some caution is advised when building heat exchangers that are very close to the estimated required length.
 
@@ -149,7 +149,7 @@ As such, some caution is advised when building heat exchangers that are very clo
 
 \(l\) & the length of the heat exchanger, in tiles \\
 
-\(m_{h}\), \(m_{c}\) & the coolat mass per tile length of heat exchanger on the hot and cold sides, respectively, in \(\frac{\mathrm{g}}{\mathrm{tile}}\) \\
+\(m_{h}\), \(m_{c}\) & the coolant mass per tile length of heat exchanger on the hot and cold sides, respectively, in \(\frac{\mathrm{g}}{\mathrm{tile}}\) \\
 
 \(h_{h}\), \(h_{c}\) & the specific heat capacity of the coolant on the hot and cold sides, respectively, in \(\frac{\mathrm{DTU}}{\mathrm{g} \cdot \mathrm{K}}\) \\
 
@@ -164,12 +164,12 @@ Each heat exchanger has two halves, one on each side of the layer of mechanized 
 Each half has a thermal conductivity determined by the configuration of the tiles/pipes w.r.t. the coolant.
 The subsections below describe how to calculate the thermal resistance of half heat exchangers depending on their configuration.
 
-The thermal conductivity of a single slice of a heat exchanger is most easily computed by modelling it as a heat circuit.
+The thermal conductivity of a single slice of a heat exchanger is most easily computed by modeling it as a heat circuit.
 We're interested in the thermal resistance between the coolant one one side, and the coolant on the other.
 
 Each half of the heat exchanger can have an interface chosen independently of the other, so we consider the heat exchanger as being made up of two halves, separated by the mechanized airlocks.
 Each half has an equivalent resistance, which we add to the other half to get the total resistance across the heat exchanger per tile.
-Thermal conductivity is the reciprocial of thermal resistance, so if \(r_{h}\) and \(r_{c}\) are the thermal resistances of the hot and cold halves, respectively, then
+Thermal conductivity is the reciprocal of thermal resistance, so if \(r_{h}\) and \(r_{c}\) are the thermal resistances of the hot and cold halves, respectively, then
 
 \begin{equation}
 k = \frac{1}{r_{h} + r_{c}}
@@ -311,19 +311,13 @@ We are given
 \begin{definitiontable}
 \(k_{c}\) & the thermal conductivity of the coolant as given by the game \\
 
-\(k_{r}\) & the thermal conductivity of the conveyor rail material as given by the game \\
-
 \(k_{a}\) & the thermal conductivity of the mechanized airlock material as given by the game \\
 
 \(k_{t}\) & the thermal conductivity of the tile material as given by the game \\
 
-\(h_{r}\) & the specific heat capacity of the conveyor rail material as given by the game \\
-
 \(h_{a}\) & the specific heat capacity of the mechanized airlock material as given by the game \\
 
 \(h_{t}\) & the specific heat capacity of the tile material as given by the game \\
-
-\(m_{r}\) & the mass of a single conveyor rail \\
 
 \(m_{a}\) & the mass of a mechanized airlock \\
 
@@ -335,8 +329,6 @@ We are given
 From this we compute
 
 \begin{definitiontable}
-\(r_{r,c}\) & the thermal resistance between a conveyor rail and its coolant \\
-
 \(r_{a,t}\) & the thermal resistance between a mechanized airlock and a tile \\
 
 \(r_{t,t}\) & the thermal resistance between adjacent tiles \\
@@ -344,55 +336,28 @@ From this we compute
 \(r_{t,c}\) & the thermal resistance between a tile and a single cell of coolant \\
 
 \(r_{a,c}\) & the thermal resistance between a mechanized airlock and a single cell of coolant \\
-
-\(r_{a,r}\) & the thermal resistance between a mechanized airlock and a conveyor rail \\
-
-\(r_{t,r}\) & the thermal resistance between a tile and a conveyor rail
 \end{definitiontable}
 
 by the following formulas.
 
 \begin{align}
-r_{r,c} &= \frac{1}{25 \left(k_{r} + k_{c}\right)} \\
 r_{a,t} &= \frac{1}{1000 \sqrt{k_{a} k_{t}}} \\
 r_{t,t} &= \frac{1}{1000 k_{t}} \\
 r_{t,c} &= \frac{1}{1000 \min \left(k_{t}, k_{c}\right)} \\
 r_{a,c} &= \frac{1}{1000 \min \left(k_{a}, k_{c}\right)}
 \end{align}
 
-Because the thermal conductivity of tile-building interactions depends on which object is hotter, the formulas for thermal conductivity between conveyor rails and tiles/airlocks differ between the hot and cold sides.
-On the hot side, the conveyor rail will be hotter.
-
-\begin{align}
-{r_{a,r}}_{h} &= \frac{10}{k_{a} k_{r} m_{r} h_{r}} \\
-{r_{t,r}}_{h} &= \frac{10}{k_{t} k_{r} m_{r} h_{r}}
-\end{align}
-
-On the cold side, the tile or mechanized airlock will be hotter.
-
-\begin{align}
-{r_{a,r}}_{c} &= \frac{2}{k_{a} k_{r} m_{a} h_{a}} \\
-{r_{t,r}}_{c} &= \frac{2}{k_{t} k_{r} m_{t} h_{t}}
-\end{align}
-
-Because conveyor rail debris interact with both the cell and the conveyor rail, the resistance between the coolant and the cell is actually described by a small network.
-
-\begin{align}
-{r_{a,c}}_{total} &= \frac{1}{\frac{1}{r_{a,r} + r_{r,c}} + \frac{1}{r_{a,c}}} \\
-{r_{t,c}}_{total} &= \frac{1}{\frac{1}{r_{t,r} + r_{t,c}} + \frac{1}{r_{t,c}}}
-\end{align}
-
 We can describe the resistance network through the tile part as a recursive expression.
 
 \begin{align}
-{r_{tiles}}_{n} &= \frac{1}{\frac{1}{{r_{t,c}}_{total}} + \frac{1}{r_{t,t} + {r_{tiles}}_{n - 1}}} \\
-{r_{tiles}}_{1} &= {r_{t,c}}_{total}
+{r_{tiles}}_{n} &= \frac{1}{\frac{1}{r_{t,c}} + \frac{1}{r_{t,t} + {r_{tiles}}_{n - 1}}} \\
+{r_{tiles}}_{1} &= r_{t,c}
 \end{align}
 
 Then we can account for the row of airlock tiles, giving us our thermal resistance for this half of the heat exchanger.
 
 \begin{equation}
-r_{rails} = \frac{1}{\frac{1}{{r_{a,c}}_{total}} + \frac{1}{r_{a,t} + {r_{tiles}}_{n}}}
+r_{rails} = \frac{1}{\frac{1}{r_{a,c}} + \frac{1}{r_{a,t} + {r_{tiles}}_{n}}}
 \end{equation}
 
 \subsection{Calculating \(l\)}
@@ -402,7 +367,7 @@ One is to simply put the heat exchanger up against the cells we want to heat or 
 The other is to pipe a coolant through or flow a coolant past one side of the heat exchanger.
 
 When embedding the heat exchanger in a mass, we assume that the mass maintains a constant temperature along the length of the heat exchanger.
-This is only really a reasonable assumption for liquids and gasses, so it is recommeded that you only use this interface when transferring heat to and from a fluid tank.
+This is only really a reasonable assumption for liquids and gasses, so it is recommended that you only use this interface when transferring heat to and from a fluid tank.
 
 The different combinations of these methods result in different formulas for the heat transferred across the length of the heat exchanger.
 We consider each combination in the following sections.
@@ -585,7 +550,7 @@ From this, we can derive a new expression for \(q_{x}\)
 q_{x} = k \DeltaT_{x} = k \DeltaT_{0} e^{k \Deltarfh x}
 \end{equation}
 
-We know the total amount of heat that flows across the heat exchanger along the enire length.
+We know the total amount of heat that flows across the heat exchanger along the entire length.
 
 \begin{equation}
 \int_{0}^{l} q_{x} dx = \qtotal
@@ -620,7 +585,7 @@ This suggests that there may be a more succinct expression for \(l\) that is not
 \end{remark}
 
 Equation~\ref{eqn:counterflow_l} is in terms of \(\DeltaT_{0}\), which is the difference between the cold coolant entry temperature and the hot coolant exit temperature.
-While this can be durectly useful, we might want to know the length based on the difference between the cold and hot coolant entry temperatures, since that will be the most extreme difference, also known as \(\DeltaTmax\).
+While this can be directly useful, we might want to know the length based on the difference between the cold and hot coolant entry temperatures, since that will be the most extreme difference, also known as \(\DeltaTmax\).
 We relate \(\DeltaT_{0}\) and \(\DeltaTmax\) in Equations~\ref{eqn:delta_t_relations}.
 
 \begin{subequations}
