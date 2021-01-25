@@ -394,7 +394,8 @@ class HeatExchanger:
 
 		if self . hot_side . flow_rate and self . cold_side . flow_rate:
 
-			delta_t_0 = hot_coolant_entry_temperature - cold_coolant_entry_temperature
+			hot_coolant_exit_temperature = hot_coolant_entry_temperature - (dtu / (self . hot_side . flow_rate * self . hot_side . coolant . heat_capacity))
+			delta_t_0 = hot_coolant_exit_temperature - cold_coolant_entry_temperature
 
 			return self . lFlowAgainstFlow (
 				dtu,
@@ -417,8 +418,7 @@ class HeatExchanger:
 
 		else:
 
-			hot_coolant_exit_temperature = hot_coolant_entry_temperature - (dtu / (hot_side . flow_rate * hot_side . coolant . heat_capacity))
-			delta_t_0 = hot_coolant_exit_temperature - cold_coolant_entry_temperature
+			delta_t_0 = hot_coolant_entry_temperature - cold_coolant_entry_temperature
 
 			return self . lStationaryAgainstStationary (dtu, delta_t_0)
 
